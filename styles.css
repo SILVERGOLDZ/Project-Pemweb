@@ -101,3 +101,67 @@ body {
 .dark-bg {
     background-color: rgb(85, 85, 85);
 }
+
+.card {
+    width: 250px;                    
+    height: 350px;                   
+    background-color: #1E3A8A;       
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.card-image {
+    width: 100%;
+    height: 100%;                   
+    background-size: contain;          
+    background-repeat: no-repeat;      
+    background-position: center;
+    background-color: #132760;
+}
+
+
+.card-content {
+    padding: 16px;
+    flex-grow: 1;                  
+}
+
+.description {
+  margin: 10px 0;
+}
+
+
+.stars {
+  color: gold;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 16px;
+}
+
+.button {
+  background-color: white;
+  color: #1E3A8A;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.button:hover {
+  background-color: #D1D5DB;
+}
