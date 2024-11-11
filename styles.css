@@ -34,6 +34,8 @@ body {
   scroll-snap-align: start;
 }
 
+/* ################### CATEGORY HOME ##################################### */
+
 .category {
   margin: 30px 70px 0px 70px;
   width: 100vw - 5px;
@@ -55,57 +57,43 @@ body {
 
 .category-chooser > button{
   border: none;
-  border-bottom: solid 1px rgb(255, 241, 163);
   background-color: #121212;
   margin-right: 5px;
   margin-left: 5px;
   padding: 10px 20px;
   color: whitesmoke;
-  font-size: 4vh;
+  font-size: 30px;
   font-weight: 600;
   font-family: Roboto;
   min-width: 200px;
 }
 
-
-@media (max-width : 768px){
-
-  .category-chooser{
-      width: 100%;
-      padding: 0px;
-      margin: 10px 0px;
-  }
-
-  .category-chooser > button{
-      font-size: 2vh;
-  }   
-
-  .category-search{
-      width: 100%;
-      padding: 0px;
-      margin: 10px;
-  }
-
-  .category-search input{
-      width: 100%;
-  }
+.category-chooser > button:hover {
+  border-bottom: solid 1px rgb(255, 241, 163);
+  transition-delay: 150ms;
 }
 
-.card-section{
-  height: 100vh;
-  width: 100%;
-}
+
+
 
 
 /* COLORS */
+.card-section{
+  border-radius: 8px;
+  padding-bottom: 30px;
+}
 
-.dark-bg {
-  background-color: rgb(85, 85, 85);
+.companyName-cardSelector > h1 {
+  color:#fff;
+  font-size: 30px;
+  padding: 30px 30px;
+  font-family: Roboto;
 }
 
 .card {
   width: 250px;                    
-  height: 350px;                   
+  height: 350px;     
+  margin: 0px 30px;              
   background-color: #1E3A8A;       
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -133,39 +121,72 @@ body {
 }
 
 .description {
-margin: 10px 0;
+  margin: 10px 0;
 }
 
 
 .stars {
-color: gold;
-font-size: 1.2em;
-margin-bottom: 10px;
+  color: gold;
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 .card-footer {
-display: flex;
-justify-content: flex-end;
-padding: 10px 16px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 16px;
 }
 
 .button {
-background-color: white;
-color: #1E3A8A;
-border: none;
-border-radius: 50%;
-width: 30px;
-height: 30px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-font-size: 1.2em;
+  background-color: white;
+  color: #1E3A8A;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2em;
 }
 
 .button:hover {
-background-color: #D1D5DB;
+  background-color: #D1D5DB;
 }
+
+.companyName-cardSelector {
+  padding-top: 30px;
+}
+
+@media (max-width : 768px){
+
+  .category-chooser{
+    width: 100%;
+    padding: 0px;
+    margin: 10px 0px;
+  }
+
+  .category-chooser > button{
+      font-size: 2vh;
+  }   
+
+  .category-search{
+      width: 100%;
+      padding: 0px;
+      margin: 10px;
+  }
+
+  .category-search input{
+      width: 100%;
+  }
+}
+
+.card-section{
+  width: 100%;
+}
+
+/* ############################################## NAVBAR ####################################################*/
 
 //navbar
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -182,19 +203,19 @@ nav {
 }
 
 nav .navbar{
-height: 100%;
-max-width: 1250px;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin: auto;
-/* background: red; */
-padding: 0 50px;
+  height: 100%;
+  max-width: 1250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  /* background: red; */
+  padding: 0 50px;
 }
 .navbar .logo a{
-font-size: 30px;
-color: #fff;
+  font-size: 30px;
+  color: #fff;
 text-decoration: none;
 font-weight: 600;
 }
@@ -203,19 +224,19 @@ line-height: 70px;
 height: 100%;
 }
 nav .navbar .links{
-display: flex;
+  display: flex;
 }
 nav .navbar .links li{
-position: relative;
-display: flex;
-align-items: center;
-justify-content: space-between;
-list-style: none;
-padding: 0 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0 14px;
 }
 nav .navbar .links li a{
-height: 100%;
-text-decoration: none;
+  height: 100%;
+  text-decoration: none;
 white-space: nowrap;
 color: #fff;
 font-size: 15px;
@@ -224,14 +245,14 @@ font-weight: 500;
 
 
 nav .navbar .links li .arrow{
-/* background: red; */
-height: 100%;
-width: 22px;
-line-height: 70px;
-text-align: center;
-display: inline-block;
-color: #fff;
-transition: all 0.3s ease;
+  /* background: red; */
+  height: 100%;
+  width: 22px;
+  line-height: 70px;
+  text-align: center;
+  display: inline-block;
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
 
