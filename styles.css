@@ -38,7 +38,6 @@ body {
 
 .category {
   margin: 30px 70px 0px 70px;
-  width: 100vw - 5px;
   border-bottom: solid 1px grey ;
 }
 
@@ -71,16 +70,21 @@ body {
 .category-chooser > button:hover {
   border-bottom: solid 1px rgb(255, 241, 163);
   transition-delay: 150ms;
+  cursor: pointer;
 }
 
-
-
-
+.category-chooser > button.active{
+  border-bottom: solid 1px rgb(255, 241, 163);
+}
 
 /* COLORS */
 .card-section{
   border-radius: 8px;
-  padding-bottom: 30px;
+  width: 100%;
+}
+
+.companyName-cardSelector{
+  width: 100%;
 }
 
 .companyName-cardSelector > h1 {
@@ -90,18 +94,34 @@ body {
   font-family: Roboto;
 }
 
+.card-overflow {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+}
+
+.card-overflow::-webkit-scrollbar{
+  display: none;
+}
+
 .card {
-  width: 250px;                    
+  min-width: 250px;                    
   height: 350px;     
-  margin: 0px 30px;              
-  background-color: #1E3A8A;       
+  margin: 10px 30px;                    
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   color: white;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
+}
+
+.card:hover {
+  background-color: #525252;
+  border-radius: 10px;
+  transform: scale(1.05,1.05);
+  cursor: pointer;
 }
 
 
@@ -111,7 +131,7 @@ body {
   background-size: contain;          
   background-repeat: no-repeat;      
   background-position: center;
-  background-color: #132760;
+  background-color: #e5e8f1;
 }
 
 
@@ -155,9 +175,6 @@ body {
   background-color: #D1D5DB;
 }
 
-.companyName-cardSelector {
-  padding-top: 30px;
-}
 
 @media (max-width : 768px){
 

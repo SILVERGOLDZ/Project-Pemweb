@@ -24,3 +24,29 @@ navLinks.style.left = "-100%";
 }
 
 
+// category chooser onclick //
+function categoryOnClick(){
+  let kategori = document.getElementsByClassName("kategori");
+  kategori.classList.add("active");
+}
+
+// Add More Card On Category HomePage //
+function addCard(){
+  document.getElementById('Laptops')
+    .innerHTML +=  
+      `<div class="card">
+            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
+            <div class="card-content">
+              <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
+              <p class="description">Views: 0</p>
+              
+              <div class="stars">★★★★★</div>
+            </div>
+            
+            <div class="card-footer">
+              <button class="button">
+                &rarr;
+              </button>
+            </div>
+          </div>`;
+}

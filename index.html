@@ -57,55 +57,76 @@
     
   <div class="category">
     <div class="category-chooser">
-      <button style="margin-left: 0px;" class="dark-bg">Trending</button>
-      <button class="dark-bg">Most Rated</button>
-      <button class="dark-bg">Most Viewed</button>
-      <button class="dark-bg">Most Visited</button>
-      <button class="dark-bg">Other...</button>
-      <button class="dark-bg">Other...</button>
-      <button class="dark-bg">Other...</button>
-      <button class="dark-bg">Other...</button>
-      <button class="dark-bg">Other...</button>
-      <button class="dark-bg">Other...</button>
+      <button onclick="categoryOnClick()" style="margin-left: 0px;" class="kategori dark-bg">Trending</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Most Rated</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Most Viewed</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Most Visited</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
+      <button onclick="categoryOnClick()"  class="kategori dark-bg">Other...</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
     </div>
 
     <div class="card-section dark-bg">
+      <!-- Category Sections -->
       <section class="companyName-cardSelector">
-        <h1>From ASUS</h1>
-        <div class="card">
-          <div class="card-image" style="background-image: url('img/laptop\(edit\).png');"></div>
-          <div class="card-content">
-              <h3>Laptop</h3>
-              <p class="description">Total: 20 items</p>
-              <p class="description">Views: 100</p>
-            
+        <h1>Laptops</h1>
+        <div class="card-overflow" id="Laptops">
+          <div class="card">
+            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
+            <div class="card-content">
+              <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
+              <p class="description">Views: 0</p>
+              
               <div class="stars">★★★★★</div>
-          </div>
-      
-          <div class="card-footer">
+            </div>
+            
+            <div class="card-footer">
               <button class="button">
                 &rarr;
               </button>
+            </div>
           </div>
+          
+          <div class="card">
+            <div class="card-image" style="background-image: url('img/Logo_huawei.png');"></div>
+            <div class="card-content">
+              <h3>HUAWEI <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
+              <p class="description">Views: 0</p>
+              
+              <div class="stars">★★★★★</div>
+            </div>
+            
+            <div class="card-footer">
+              <button class="button">
+                &rarr;
+              </button>
+            </div>
+          </div>
+          
         </div>
+        <button onclick="addCard()"> CLICK ME!</button>
       </section>
 
       <section class="companyName-cardSelector">
-        <h1>From VIVO</h1>
-        <div class="card">
-          <div class="card-image" style="background-image: url('img/laptop\(edit\).png');"></div>
-          <div class="card-content">
-              <h3>Laptop</h3>
-              <p class="description">Total: 20 items</p>
-              <p class="description">Views: 100</p>
-            
-              <div class="stars">★★★★★</div>
-          </div>
-      
-          <div class="card-footer">
-              <button class="button">
-                &rarr;
-              </button>
+        <h1>Smartphones</h1>
+        <div class="card-overflow">
+          <div class="card">
+            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
+            <div class="card-content">
+                <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
+                <p class="description">Views: 0</p>
+              
+                <div class="stars">★★★★★</div>
+            </div>
+        
+            <div class="card-footer">
+                <button class="button">
+                  &rarr;
+                </button>
+            </div>
           </div>
         </div>
       </section>
@@ -113,5 +134,6 @@
     </div>
   </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
