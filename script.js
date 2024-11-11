@@ -28,5 +28,3 @@
       navLinks.style.left = "-100%"; // Sidebar slides out
     });
   });
-
-
