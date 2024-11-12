@@ -148,7 +148,7 @@ body {
 
 
 .stars {
-  color: gold;
+  color: white;
   font-size: 1.2em;
   margin-bottom: 10px;
 }
@@ -219,7 +219,7 @@ body {
 }
 
 nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -369,9 +369,7 @@ nav .navbar .links li a {
 }
 
 @media (max-width: 800px) {
-  nav {
-    /* position: relative; */
-  }
+
 
   .navbar .bx-menu {
     display: block;
