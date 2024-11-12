@@ -369,9 +369,7 @@ nav .navbar .links li a {
 }
 
 @media (max-width: 800px) {
-  nav {
-    /* position: relative; */
-  }
+
 
   .navbar .bx-menu {
     display: block;
