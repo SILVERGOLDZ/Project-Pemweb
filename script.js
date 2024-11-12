@@ -40,16 +40,22 @@ function addCard(){
       `<div class="card">
             <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
             <div class="card-content">
-              <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-              <p class="description">Views: 0</p>
+                <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
+                <p class="description">Views: 0</p>
               
-              <div class="stars">★★★★★</div>
+                <div class="stars">
+                  <span class="fa fa-star bintang-rating" id="tes001-ST1"></span>
+                  <span class="fa fa-star bintang-rating" id="tes001-ST2"></span>
+                  <span class="fa fa-star bintang-rating" id="tes001-ST3"></span>
+                  <span class="fa fa-star bintang-rating" id="tes001-ST4"></span>
+                  <span class="fa fa-star bintang-rating" id="tes001-ST5"></span>
+                </div>
             </div>
-            
+        
             <div class="card-footer">
-              <button class="button">
-                &rarr;
-              </button>
+                <button class="button">
+                  &rarr;
+                </button>
             </div>
           </div>`;
 }
