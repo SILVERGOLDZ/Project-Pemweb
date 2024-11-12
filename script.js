@@ -53,3 +53,45 @@ function addCard(){
             </div>
           </div>`;
 }
+
+
+// Star Responsive //
+let bintang_rating = document.querySelectorAll(".bintang-rating");
+let id_bintang = "";
+let id = "";
+let other_id = "";
+let current_rating = 0;
+
+bintang_rating.forEach(target => {
+  target.addEventListener("mouseover", function(event) {
+    id_bintang = event.target.id;
+    other_id = id_bintang.split('-ST')[0];
+    id = parseInt(id_bintang.match(/-ST(\d+)/)[1], 10);
+
+    for (let i = 1; i <= id; i++){
+      document.getElementById(`${other_id}-ST${i}`).classList.add("bintang-rating-hover");
+    }
+  });
+
+  target.addEventListener("mouseout", function(event) {
+    bintang_rating.forEach(star => {
+      star.classList.remove("bintang-rating-hover");
+    });
+  });
+
+  target.addEventListener("click", function(){
+    if (current_rating > 0){
+      for (let i = 1; i <= current_rating; i++){
+        document.getElementById(`${other_id}-ST${i}`).classList.remove("bintang-rating-rated");
+      }
+    }
+
+    for (let i = 1; i <= id; i++){
+      document.getElementById(`${other_id}-ST${i}`).classList.add("bintang-rating-rated");
+    }
+    current_rating = id;
+  })
+
+});
+
+

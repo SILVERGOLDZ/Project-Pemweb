@@ -2,3 +2,14 @@
     background-color: rgb(41, 41, 41);
   }
   
+  .rated {
+    color: orange;
+  }
+
+  .bintang-rating-hover{
+    color: orange;
+  }
+
+  .bintang-rating-rated{
+    color: orange;
+  }
