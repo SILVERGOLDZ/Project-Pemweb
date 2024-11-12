@@ -58,46 +58,58 @@ function addCard(){
                 </button>
             </div>
           </div>`;
+  star_responsive();
 }
-
-
-// Star Responsive //
-let bintang_rating = document.querySelectorAll(".bintang-rating");
-let id_bintang = "";
-let id = "";
-let other_id = "";
-let current_rating = 0;
-
-bintang_rating.forEach(target => {
-  target.addEventListener("mouseover", function(event) {
+        
+function star_responsive() {
+  let bintang_rating = document.querySelectorAll(".bintang-rating"); 
+  let id_bintang = "";
+  let id = "";
+  let other_id = "";
+  let current_rating = 0;
+        
+  
+  function star_hover(event) {
     id_bintang = event.target.id;
-    other_id = id_bintang.split('-ST')[0];
-    id = parseInt(id_bintang.match(/-ST(\d+)/)[1], 10);
-
-    for (let i = 1; i <= id; i++){
+    other_id = id_bintang.split('-ST')[0]; 
+    id = parseInt(id_bintang.match(/-ST(\d+)/)[1], 10); 
+    
+    for (let i = 1; i <= id; i++) {
       document.getElementById(`${other_id}-ST${i}`).classList.add("bintang-rating-hover");
     }
-  });
-
-  target.addEventListener("mouseout", function(event) {
+  }
+  
+  function star_unhover() {
     bintang_rating.forEach(star => {
       star.classList.remove("bintang-rating-hover");
     });
-  });
-
-  target.addEventListener("click", function(){
-    if (current_rating > 0){
-      for (let i = 1; i <= current_rating; i++){
+  }
+  
+  function star_click() {
+    if (current_rating > 0) {
+      for (let i = 1; i <= current_rating; i++) {
         document.getElementById(`${other_id}-ST${i}`).classList.remove("bintang-rating-rated");
       }
     }
-
-    for (let i = 1; i <= id; i++){
+          
+    for (let i = 1; i <= id; i++) {
       document.getElementById(`${other_id}-ST${i}`).classList.add("bintang-rating-rated");
     }
+    
     current_rating = id;
-  })
+  }
+  
+  bintang_rating.forEach(target => {
+    target.removeEventListener("mouseover", star_hover); 
+    target.removeEventListener("mouseout", star_unhover);    
+    target.removeEventListener("click", star_click);          
+      
+    target.addEventListener("mouseover", star_hover);
+    target.addEventListener("mouseout", star_unhover);
+    target.addEventListener("click", star_click);
+  });
+}
 
-});
+star_responsive();
 
 
