@@ -11,10 +11,15 @@ body {
   margin: 0;
 }
 
+@keyframes notice_scroll {
+  0% {transform: translateX(0%);}
+  100% {transform: translateX(-100%);}
+}
+
+
 .notice {
   max-height: 40vh;
-  height: auto;
-  width: 100vw - 5px;
+  height: auto; 
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
