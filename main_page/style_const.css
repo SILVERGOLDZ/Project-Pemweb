@@ -1,15 +1,16 @@
 .dark-bg {
     background-color: rgb(41, 41, 41);
-  }
+}
   
-  .rated {
-    color: orange;
-  }
+.rated {
+  color: orange;
+}
 
-  .bintang-rating-hover{
-    color: orange;
-  }
+.bintang-rating-hover{
+  color: orange;
+}
 
-  .bintang-rating-rated{
-    color: orange;
-  }
+.bintang-rating-rated{
+  color: orange;
+}
+
