@@ -1,3 +1,9 @@
+body {
+  background-color: #121212;
+  padding-top: 70px; /* Adjust based on the navbar height */
+  margin: 0;
+}
+
 .dark-bg {
     background-color: rgb(41, 41, 41);
 }
