@@ -63,6 +63,19 @@ nav {
     font-size: 15px;
     font-weight: 500;
   }
+
+  nav .profile-picture {
+    padding: 1px;
+  }
+  
+  .image-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  
+    object-fit: cover;
+    object-position: center right;
+  }
   
   .navbar .search-box {
     position: relative;
