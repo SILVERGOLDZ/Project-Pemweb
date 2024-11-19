@@ -17,16 +17,19 @@
                 <input type="file" name="image" id="image" accept="image/*" style="display: none;" required>
             </div>
 
-            <div class="description">
-                <label class="description-label" style="font-size: 20px;" for="description">Description</label>
+            <div class="user-input">
+                <label class="input-label" style="font-size: 20px;" for="description">Description</label>
                 <br>
                 <textarea name="description" placeholder="Write your description here..." required></textarea>
+                <br><br>
+
+                <label class="input-label" for="link" >Website Link (Optional)</label>
+                <br>
+                <input type="text" name="link" id="link" placeholder="Your website link...">
+                <br>
+                <button type="submit">Submit</button>
             </div>
             
-            <br>
-            <button type="submit">
-                Submit
-            </button>
         </form>
 
     <script src="user_create_javascript.js"></script>
