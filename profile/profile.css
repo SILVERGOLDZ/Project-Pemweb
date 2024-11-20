@@ -1,40 +1,71 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .container{
     display: flex;
     color: white;
     width: 100vw;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 71px);
     border-radius: 5px;
     box-sizing: border-box;
-    margin-top: 70px;
+    margin-top: 71px;
 }
 
 .sidenav {
-    width: 200px;
-    height: calc(100% - 80px);
+    width: auto;
+    min-width: 200px;
+    height: 100%;
     border-right: double 3px white; 
-    padding: 40px 0px;      
+    padding: 40px 0px; 
+    overflow-y: auto; 
+    overflow-x: hidden;    
 }
   
-  .sidenav a {
-    padding: 6px 6px 6px 32px;
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    display: block;
-  }
+.sidenav a {
+  padding: 6px 0px 6px 12px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+}
   
-  .sidenav a:hover {
-    background-color: #f1f1f147;
-  }
+.sidenav a:hover {
+  background-color: #f1f1f147;
+}
   
-  .main {
-    margin-left: 20px;
-    width: 40vw;
-    border-radius: 5px;
-    padding: 30px 0px;
-  }
+.main {
+  width: calc(100% - 200px);
+  border-radius: 5px;
+  margin: 40px 0px 40px 50px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.main::-webkit-scrollbar {
+  width: 10px; /* Width of the vertical scrollbar */
+}
+
+.main::-webkit-scrollbar-track {
+  background: black; /* Track color */
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: black; /* Thumb color */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.main::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb color on hover */
+}
+
+/* Scrollbar styles for Firefox */
+.main {
+  scrollbar-width: thin; /* "auto", "thin", or "none" */
+  scrollbar-color: gold #676767; /* Thumb and track colors */
+}
+
+/* ---------------------------- */
+
