@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="style_const.css">
 </head>
-<body style="background-color: #01020d;">
+<body style="  background-color: #121212
+">
   <nav id="navbar" class="nav">
     <div class="navbar">
       <i class="bx bx-menu"></i>
@@ -61,7 +62,7 @@
     <div class="team-cards">
         <div class="team-card">
             <div class="team-image">
-                <img src="img/WhatsApp Image 2024-11-21 at 12.45.09.jpeg">
+                <img src="img/WhatsApp Image 2024-11-21 at 12.45.09.jpeg" >
             </div>
             <div class="team-detail">
                 <h3>Kevin</h3>
