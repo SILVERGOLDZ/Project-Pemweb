@@ -95,6 +95,16 @@ nav {
   .navbar .bx-menu {
     display: none;
   }
+
+  .image-profile {
+    width: 40px; /* Adjust size */
+    height: 40px; /* Keep it square */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image is fully covered within the circle */
+    border: 2px solid #0e0d0d; /* Optional: adds a border around the image */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds a slight shadow */
+  }
+
   
   @media (max-width: 920px) {
     nav .navbar {

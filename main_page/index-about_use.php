@@ -35,7 +35,7 @@
         <ul class="links">
           <li>
             <div class="search-box">
-              <a href="index-search.html">
+              <a href="index-search.php">
               <i class="bx bx-search"></i>
               </a>
             </div>

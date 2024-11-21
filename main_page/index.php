@@ -37,7 +37,7 @@
         <ul class="links">
           <li>
             <div class="search-box">
-              <a href="index-search.html">
+              <a href="index-search.php">
               <i class="bx bx-search"></i>
               </a>
             </div>
@@ -51,7 +51,11 @@
                 echo "<li><a href='../profile/profile.php'>Combri</a></li>";
             }
           ?>
-          <li style="top: 13px;"><a href="../profile/profile.php#my_profile"><img src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile"></a></li>
+<li style="top: 13px;">
+  <a href="../profile/profile.php#my_profile">
+    <img src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile">
+  </a>
+</li>
         </ul>
       </div>
     </div>

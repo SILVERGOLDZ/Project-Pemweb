@@ -11,8 +11,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="nav.css">
     <link href="style-search.css" rel="stylesheet" />
+
   </head>
-  <body>
+  <body> 
     <nav id="navbar" class="nav">
       <div class="navbar">
         <i class="bx bx-menu"></i>
@@ -23,18 +24,34 @@
             <i class="bx bx-x"></i>
           </div>
           <ul class="links">
-            <li><a href="#">Profile</a></li>
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="index-about_use.html">About us</a></li>
+            <li><a href="../profile/profile.php#my_profile">Profile</a></li>
+            <li><a href="index.php" >Home</a></li>
+            <li><a href="index-about_use.php">About us</a></li>
             <li><a href="#">Contact us</a></li>
           </ul>
         </div>
-        <div class="search-box">
-          <a href="index-search.html">
-            <i class="bx bx-search"></i>
-          </a>
-        </div>
         
+        <div class="nav-links">
+          <ul class="links">
+            <li>
+              <div class="search-box">
+                <a href="index-search.php">
+                <i class="bx bx-search"></i>
+                </a>
+              </div>
+            </li>
+            <?php
+              session_start();
+              if (isset($_SESSION['username'])) {
+                $username = $_SESSION['username']; 
+                echo "<li><a href='../profile/profile.php'>$username</a></li>";
+              } else {
+                  echo "<li><a href='../profile/profile.php'>Combri</a></li>";
+              }
+            ?>
+            <li style="top: 13px;"><a href="../profile/profile.php#my_profile"><img src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile"></a></li>
+          </ul>
+        </div>
       </div>
     </nav>
     <div class="s003">
@@ -68,67 +85,46 @@
           <span class="tag" data-value="Education">Education</span>
         </div>
         <div class="inner-form">
-          <div class="input-field first-wrap">
-            <div class="input-select">
-              <select data-trigger="" name="choices-single-defaul">
-                <option placeholder="">Category</option>
-                <option>New Arrivals</option>
-                <option>Sale</option>
-                <option>Ladies</option>
-                <option>Men</option>
-                <option>Clothing</option>
-                <option>Footwear</option>
-                <option>Accessories</option>
-              </select>
-            </div>
-          </div>
           <div class="input-field second-wrap">
             <input id="search" type="text" placeholder="Enter Keywords?" />
           </div>
-          <div class="input-field third-wrap">
-            <button class="btn-search" type="button">
-              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-              </svg>
-            </button>
+              <div class="input-field third-wrap">
+                <button class="btn-search" type="button">
+                  <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                  </svg>
+                </button>
+              </div>
           </div>
-        </div>
+
       </form>
     </div>
-    <!-- Footer -->
+
+  <!-- Footer -->
   <footer class="footerContainer">
-    <div class="socialIcons">
-      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-      <a href="#" aria-label="Google Plus"><i class="fa-brands fa-google-plus"></i></a>
-      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-    </div>
+      <div class="socialIcons">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" aria-label="Google Plus"><i class="fa-brands fa-google-plus"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
 
-    <div class="footerNav">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Our Team</a></li>
-      </ul>
-    </div>
+      <div class="footerNav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
+      </div>
 
-    <div class="footerBottom">
-      <p>&copy; 2024 ComBri.com. All rights reserved.</p>
-    </div>
-  </footer>
+      <div class="footerBottom">
+        <p>&copy; 2024 ComBri.com. All rights reserved.</p>
+      </div>
+    </footer>
     <script src="scirpt-search.js"></script>
     <script src="script.js"></script>
-
-    <script>
-      const choices = new Choices('[data-trigger]',
-      {
-        searchEnabled: false,
-        itemSelectText: '',
-      });
-
-    </script>
   </body>
 </html>
