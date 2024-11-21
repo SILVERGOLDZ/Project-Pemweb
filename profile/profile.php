@@ -45,7 +45,7 @@
             <br><br><br>
             <a href="#my_profile">My Profile</a>
             <a href="#">View</a>
-            <a href="#">Undefined</a>
+            <a href="#">Setting</a>
             <a href="#">Undefined</a>
             <a href="#">Undefined</a>
             <a href="#">Undefined</a>

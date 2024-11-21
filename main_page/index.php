@@ -27,8 +27,8 @@
         </div>
         <ul class="links">
           <li><a href="../profile/profile.php#my_profile">Profile</a></li>
-          <li><a href="index.html" >Home</a></li>
-          <li><a href="index-about_use.html">About us</a></li>
+          <li><a href="index.php" >Home</a></li>
+          <li><a href="index-about_use.php">About us</a></li>
           <li><a href="#">Contact us</a></li>
         </ul>
       </div>
