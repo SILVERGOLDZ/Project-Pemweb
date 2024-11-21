@@ -27,7 +27,7 @@ body{
 }
 
 .team-card {
-    background-color: #060721;
+    background-color: rgba(44, 46, 46, 0.2);
     border-radius: 50px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     margin: 0px 10px; 
@@ -51,6 +51,7 @@ body{
  font-size: 30px;
  margin: 15px 0px;   
 }
+
 .team-detail p{
     color: #426385;
     font-size: 18px;

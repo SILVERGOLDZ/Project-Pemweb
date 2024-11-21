@@ -62,7 +62,7 @@
     <div class="team-cards">
         <div class="team-card">
             <div class="team-image">
-                <img src="img/WhatsApp Image 2024-11-21 at 12.45.09.jpeg">
+                <img src="img/WhatsApp Image 2024-11-21 at 12.45.09.jpeg" >
             </div>
             <div class="team-detail">
                 <h3>Kevin</h3>
