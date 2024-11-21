@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides&family=Lexend:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+}
+
+.swiper-section { /* Swiper Section */
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-container {
+    width: 80%;
+    height: 80%;
+}
+.swiper-slide { /* Card Styles */
+    perspective: 1000px; /*3D flip effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .card-front,
+.card .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card .card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8); 
+    color: #fff; 
+    font-size: 18px;
+    text-align: center;
+    transform: rotateY(180deg); 
+    backface-visibility: hidden; 
+}
+
+.flip-button {  /* Flip Button */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 7px 30px 0 rgba(100, 100, 111, 0.2);
+    background: rgba(202, 202, 202, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: #fff;
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 8px 0;
+    text-align: center;
+    width: 60%;
+    outline: 0;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.flip-button:hover {
+    transform: translateX(-50%) scale(0.98);
+}
+
+.flip-button.hidden {
+    display: none;
+}
+ 
+.swiper-button-next,
+.swiper-button-prev { /* Navigation Buttons */
+    color: #E5E5E5;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: #716f6f;
+}
+ 
+.swiper-pagination-bullet { /* Pagination */
+    background-color: #E5E5E5;
+    opacity: 0.8;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #716f6f;
+    opacity: 1;
+}
