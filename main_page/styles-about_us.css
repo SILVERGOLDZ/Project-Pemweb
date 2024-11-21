@@ -10,7 +10,7 @@ body{
 .team-section::after {
   content: '';
   display: block;
-  height: 250px; /* Height of the empty space */
+  height: 250px; 
 }
 .team-section{
     margin-top: 75px;
@@ -26,14 +26,14 @@ body{
     display: flex;
     justify-content: space-between;
     margin: 20px auto;
-    gap: 10px; /* Adds a small gap between cards */
+    gap: 10px; 
 }
 
 .team-card {
     background-color: #060721;
     border-radius: 50px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    margin: 0px 10px; /* Reduce margin between cards */
+    margin: 0px 10px; 
     padding: 20px;
     text-align: center;
     transition: transform 0.6s ease;
