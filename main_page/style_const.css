@@ -26,3 +26,10 @@ body {
   object-fit: cover;
   object-position: center right;
 }
+
+form button{
+  background-color: rgb(79, 4, 177);
+  border: none;
+  color: white;
+  border-radius: 2px;
+}

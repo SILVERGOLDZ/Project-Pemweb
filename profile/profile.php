@@ -1,12 +1,20 @@
 <?php
     session_start();
     $username = "Combri";
+    $company = "Combri";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
-        $username = $_POST['username'];
+        if (isset($_POST['username'])) {
+            $username = htmlspecialchars($_POST['username']);
+        }
+        if (isset($_POST['company'])) {
+            $company = htmlspecialchars($_POST['company']);
+        }
 
         $username = htmlspecialchars($username);
         $_SESSION['username'] = $username;
+        $_SESSION['company'] = $_POST['company'];
+
     }
 ?>
 
@@ -58,17 +66,28 @@
                     </div>
                 </form>
                 <br><br><br>
-                <div style="display: flex; gap: 20px;" class="username-container">
+                <div style="display: flex; gap: 20px;" class="profile-text-container">
                     <h2>Username : </h2>
                     <div class="username">
-
-                        
 
                         <form style="display: flex;" id="profile-change" action="profile.php" method="POST">
                             <input style="height: 30px; display: none;" type="text" name="username" >
                             <?php   echo "<h2>$username</h2>"; ?>
-                            <button style="margin-left: 20px;" id="user-button" type="button" onclick="showInput()">Change</button>
-                            <button type="submit" id="submitButton" onclick="hideInput()" style="display: none;">Done</button>
+                            <button style="margin-left: 20px; width : 70px" id="user_button" type="button" onclick="showInput('profile-change','user_submitButton', 'user_button')">Change</button>
+                            <button type="submit" id="user_submitButton" onclick="hideInput('username', 'user_submitButton', 'user_button')" style="display: none;">Done</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 20px;" class="profile-text-container">
+                    <h2>Company : </h2>
+                    <div class="username">
+
+                        <form style="display: flex;" id="company-change" action="profile.php" method="POST">
+                            <input style="height: 30px; display: none;" type="text" name="company" >
+                            <?php   echo "<h2>$company</h2>"; ?>
+                            <button style="margin-left: 20px; width : 70px" id="company-button" type="button" onclick="showInput('company-change', 'company_submitButton', 'company-button')">Change</button>
+                            <button type="submit" id="company_submitButton" onclick="hideInput('company', 'company_submitButton', 'company-button')" style="display: none;">Done</button>
                         </form>
                     </div>
                 </div>

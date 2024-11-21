@@ -12,21 +12,22 @@ const fileInput = document.getElementById('image');
         }
     });
 
-const button_user = document.getElementById("user-button");
-const getA = document.querySelector("#profile-change input")
-const getB = document.querySelector("#profile-change h2")
-function showInput(){
+function showInput(formId,submitId, buttonId){
+    let button_user = document.getElementById(buttonId);
+    let getA = document.querySelector(`#${formId} input`);
+    let getB = document.querySelector(`#${formId} h2`);
 
     getA.style.display = '';
     getB.style.display = 'none';
 
-    document.querySelector("#submitButton").style.display = '';
+    document.querySelector(`#${submitId}`).style.display = '';
     button_user.style.display = 'none';
 
 }
-function hideInput() {
+function hideInput(inputName, submitId,buttonId) {
+    let button_user = document.getElementById(buttonId);
     // Find the input element
-    const input = document.querySelector("input[name='username']");
+    const input = document.querySelector(`input[name='${inputName}']`);
     
     // Add 'display: none' to its style
     if (input) {
@@ -35,5 +36,5 @@ function hideInput() {
 
     // Optionally, hide the submit button too
     button_user.style.display = '';
-    document.querySelector("#submitButton").style.display = 'none';
+    document.querySelector(`#${submitId}`).style.display = 'none';
 }
