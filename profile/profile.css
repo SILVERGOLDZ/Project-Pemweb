@@ -45,26 +45,26 @@
 }
 
 .main::-webkit-scrollbar {
-  width: 10px; /* Width of the vertical scrollbar */
+  width: 10px; 
 }
 
 .main::-webkit-scrollbar-track {
-  background: black; /* Track color */
+  background: black; 
 }
 
 .main::-webkit-scrollbar-thumb {
-  background: black; /* Thumb color */
-  border-radius: 5px; /* Rounded corners */
+  background: black; 
+  border-radius: 5px; 
 }
 
 .main::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Thumb color on hover */
+  background: #555;
 }
 
-/* Scrollbar styles for Firefox */
+
 .main {
-  scrollbar-width: thin; /* "auto", "thin", or "none" */
-  scrollbar-color: gold #676767; /* Thumb and track colors */
+  scrollbar-width: thin; 
+  scrollbar-color: gold #676767; 
 }
 
 /* ---------------------------- */

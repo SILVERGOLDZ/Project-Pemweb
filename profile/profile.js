@@ -26,15 +26,15 @@ function showInput(formId,submitId, buttonId){
 }
 function hideInput(inputName, submitId,buttonId) {
     let button_user = document.getElementById(buttonId);
-    // Find the input element
+
     const input = document.querySelector(`input[name='${inputName}']`);
     
-    // Add 'display: none' to its style
+  
     if (input) {
         input.style.display = "none";
     }
 
-    // Optionally, hide the submit button too
+ 
     button_user.style.display = '';
     document.querySelector(`#${submitId}`).style.display = 'none';
 }
