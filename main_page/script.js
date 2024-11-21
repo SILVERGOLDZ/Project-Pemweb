@@ -45,6 +45,51 @@ function addCard(){
           </div>`;
   star_responsive();
 }
+
+// Temporary While
+let kriteria = ["Tablet", "Iphone", "TV", "Car", "Bike", "Foot Ball"];
+const companyName_class = document.querySelector(".companyName-cardSelector");
+function auto_add_card(){
+  for (let i = 0; i < kriteria.length; i++){
+    let section_html = 
+    `<h1>${kriteria[i]}</h1>
+    <div class="card-overflow" id="${kriteria[i]}">`;
+
+    let cards = "";
+    for(let j = 0; j < 20; j++){
+      cards += 
+      ` <div class="card">
+          <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
+          <div class="card-content">
+            <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
+            <p class="description">Views: 0</p>
+            
+            <div class="stars">
+              <span class="fa fa-star bintang-rating" id="${kriteria[i]}00${j}-ST1"></span>
+              <span class="fa fa-star bintang-rating" id="${kriteria[i]}00${j}-ST2"></span>
+              <span class="fa fa-star bintang-rating" id="${kriteria[i]}00${j}-ST3"></span>
+              <span class="fa fa-star bintang-rating" id="${kriteria[i]}00${j}-ST4"></span>
+              <span class="fa fa-star bintang-rating" id="${kriteria[i]}00${j}-ST5"></span>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <button class="button">
+              &rarr;
+            </button>
+          </div>
+        </div>`;
+    }
+    
+    section_html += cards + `</div>`;
+    companyName_class.innerHTML += section_html;
+  }
+}
+
+auto_add_card()
+
+
+// 
         
 function star_responsive() {
   let bintang_rating = document.querySelectorAll(".bintang-rating"); 
