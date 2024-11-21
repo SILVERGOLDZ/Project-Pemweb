@@ -62,7 +62,7 @@
     <div class="team-cards">
         <div class="team-card">
             <div class="team-image">
-                <img src="download.jpg">
+                <img src="img/WhatsApp Image 2024-11-21 at 12.45.09.jpeg">
             </div>
             <div class="team-detail">
                 <h3>Kevin</h3>
@@ -71,7 +71,7 @@
         </div>
         <div class="team-card">
             <div class="team-image">
-                <img src="download.jpg">
+                <img src="img/Cuplikan layar 2024-11-21 125310.png">
             </div>
             <div class="team-detail">
                 <h3>Steven</h3>
@@ -80,7 +80,7 @@
         </div>
         <div class="team-card">
             <div class="team-image">
-                <img src="download.jpg">
+                <img src="img/WhatsApp Image 2024-11-12 at 17.02.49.jpeg">
             </div>
             <div class="team-detail">
                 <h3>Patrick</h3>
