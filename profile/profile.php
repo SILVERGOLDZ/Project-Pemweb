@@ -16,6 +16,23 @@
         $_SESSION['company'] = $_POST['company'];
 
     }
+
+    if (isset($_POST['upload']) && isset($_FILES['image'])) {
+        $imageTmpPath = $_FILES['image']['tmp_name'];
+        $imageName = basename($_FILES['image']['name']);
+        $uploadDir = 'uploads/'; // Define the upload directory
+        $imageUploadPath = $uploadDir . $imageName;
+    
+        // Ensure the uploads directory exists
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true); // Create the directory with proper permissions
+        }
+    
+        // Validate and move the uploaded file
+        if (move_uploaded_file($imageTmpPath, $imageUploadPath)) {
+            $_SESSION['image'] = $imageUploadPath; // Save the image path in the session
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +56,7 @@
     <div class="container dark-bg">
         <div class="sidenav">
             <div style="display: flex;justify-content: center; align-items: center;text-align: center; flex-direction: column;width: 100%;height: auto; min-height: 150px;">
-                <img style="width: 80px; height: 80px;" src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile">
+                <img style="width: 80px; height: 80px;" src="<?php echo isset($_SESSION['image']) ? $_SESSION['image'] : '../main_page/img/anon.jpg'; ?>" class="image-profile">
                 <?php echo "<p><br>Welcome back,<br> $username!</p>"; ?>
             </div>
             <br><br><br>
@@ -60,9 +77,10 @@
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="img-upload">
                         <label for="image" class="custom-file-upload">
-                            <img class="image-profile" src="../main_page/img/anon.jpg" alt="upload img" id="upload-preview" style="width: 15vw; height: 15vw; margin-left: 30px;background-color: aliceblue; cursor: pointer;">
+                            <img class="image-profile" src="<?php echo isset($_SESSION['image']) ? $_SESSION['image'] : '../main_page/img/anon.jpg'; ?>" alt="upload img" id="upload-preview" style="width: 15vw; height: 15vw; margin-left: 30px;background-color: aliceblue; cursor: pointer;">
                         </label>
                         <input type="file" name="image" id="image" accept="image/*" style="display: none;" required>
+                        <button type="submit" name="upload">Upload</button>
                     </div>
                 </form>
                 <br><br><br>
