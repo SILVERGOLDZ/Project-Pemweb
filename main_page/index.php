@@ -26,14 +26,14 @@
           <i class="bx bx-x"></i>
         </div>
         <ul class="links">
-          <li><a href="#">Profile</a></li>
+          <li><a href="../profile/profile.php#my_profile">Profile</a></li>
           <li><a href="index.html" >Home</a></li>
           <li><a href="index-about_use.html">About us</a></li>
           <li><a href="#">Contact us</a></li>
         </ul>
       </div>
       
-      <div class="profile-picture">
+      <div class="nav-links">
         <ul class="links">
           <li>
             <div class="search-box">
@@ -42,8 +42,16 @@
               </a>
             </div>
           </li>
-          <li><a href="../profile/profile.php#my_profile">user_name</a></li>
-          <li><a href="../profile/profile.php#my_profile"><img src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile"></a></li>
+          <?php
+            session_start();
+            if (isset($_SESSION['username'])) {
+              $username = $_SESSION['username']; 
+              echo "<li><a href='../profile/profile.php'>$username</a></li>";
+            } else {
+                echo "<li><a href='../profile/profile.php'>Combri</a></li>";
+            }
+          ?>
+          <li style="top: 13px;"><a href="../profile/profile.php#my_profile"><img src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile"></a></li>
         </ul>
       </div>
     </div>
