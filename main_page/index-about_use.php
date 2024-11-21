@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="style_const.css">
 </head>
-<body style="background-color: #01020d;">
+<body style="  background-color: #121212
+">
   <nav id="navbar" class="nav">
     <div class="navbar">
       <i class="bx bx-menu"></i>
@@ -27,7 +28,6 @@
           <li><a href="../profile/profile.php#my_profile">Profile</a></li>
           <li><a href="../main_page/" >Home</a></li>
           <li><a href="index-about_use.php">About us</a></li>
-          <li><a href="#">Contact us</a></li>
         </ul>
       </div>
       
