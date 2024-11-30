@@ -70,15 +70,8 @@
   <div class="category">
     <div class="category-chooser">
       <button onclick="categoryOnClick()" style="margin-left: 0px;" class="kategori dark-bg">Trending</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Most Rated</button>
+      <button onclick="categoryOnClick()" class="kategori dark-bg">Top Rated</button>
       <button onclick="categoryOnClick()" class="kategori dark-bg">Most Viewed</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Most Visited</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
-      <button onclick="categoryOnClick()"  class="kategori dark-bg">Other...</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Other...</button>
     </div>
 
     <div class="card-section dark-bg">
