@@ -55,8 +55,9 @@ body {
     object-fit: cover;
 }
 
-.card .card-back {
+.card-back {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.8); 
@@ -65,7 +66,31 @@ body {
     text-align: center;
     transform: rotateY(180deg); 
     backface-visibility: hidden; 
+
 }
+
+.card-title {
+    font-family: "Lexend", sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.card-rating {
+    font-family: "Lexend", sans-serif;
+    font-size: 1.2rem;
+    color: #ffdd00; /* Gold for rating */
+}
+.card-rating span {
+    font-weight: bold;
+}
+
 
 .flip-button {  /* Flip Button */
     position: absolute;
@@ -122,3 +147,9 @@ body {
     background-color: #716f6f;
     opacity: 1;
 }
+
+.stars {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }

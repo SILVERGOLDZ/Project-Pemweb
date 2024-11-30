@@ -1,2 +1,4 @@
 001$$$$ = laptops
 002$$$ = smartphone
+
+asus001
