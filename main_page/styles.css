@@ -73,7 +73,7 @@ body {
   color: whitesmoke;
   font-size: 30px;
   font-weight: 600;
-  font-family: "Lexend", sans-serif;
+  font-family: "Lexend", sans-serif; /* new font family */ 
   min-width: 200px;
 }
 
