@@ -70,7 +70,7 @@ try {
         <?php else: ?>
             <div class="no-results">
                 <p>No cards found for your search.</p>
-                <p><a href="main_page/index-search.php">Go back to search</a></p>
+                <p><a href="/main_page/index.php">Go back to search</a></p>
             </div>
         <?php endif; ?>
     </div>
