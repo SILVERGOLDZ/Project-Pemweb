@@ -14,45 +14,59 @@
 
   </head>
   <body> 
-    <nav id="navbar" class="nav">
-      <div class="navbar">
-        <i class="bx bx-menu"></i>
-        <div class="logo"><a href="#">ComBri</a></div>
-        <div class="nav-links">
-          <div class="sidebar-logo">
-            <span class="logo-name">ComBri</span>
-            <i class="bx bx-x"></i>
-          </div>
-          <ul class="links">
-            <li><a href="../profile/profile.php#my_profile">Profile</a></li>
-            <li><a href="index.php" >Home</a></li>
-            <li><a href="index-about_use.php">About us</a></li>
-          </ul>
+  <nav id="navbar" class="nav">
+    <div class="navbar">
+      <i class="bx bx-menu"></i>
+      <div class="logo"><a href="#">ComBri</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">ComBri</span>
+          <i class="bx bx-x"></i>
         </div>
-        
-        <div class="nav-links">
-          <ul class="links">
-            <li>
-              <div class="search-box">
-                <a href="index-search.php">
-                <i class="bx bx-search"></i>
-                </a>
-              </div>
-            </li>
-            <?php
-              session_start();
-              if (isset($_SESSION['username'])) {
-                $username = $_SESSION['username']; 
-                echo "<li><a href='../profile/profile.php'>$username</a></li>";
-              } else {
-                  echo "<li><a href='../profile/profile.php'>Combri</a></li>";
-              }
-            ?>
-            <li style="top: 13px;"><a href="../profile/profile.php#my_profile"><img src="https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg" class="image-profile"></a></li>
-          </ul>
-        </div>
+        <ul class="links">
+          <li><a href="../profile/profile.php#my_profile">Profile</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="index-about_use.php">About us</a></li>
+        </ul>
       </div>
-    </nav>
+      
+      <div class="nav-links">
+        <ul class="links">
+          <li>
+            <div class="search-box">
+              <a href="index-search.php">
+                <i class="bx bx-search"></i>
+              </a>
+            </div>
+          </li>
+          <?php
+            session_start(); // Ensure session is started
+            if (isset($_SESSION['companyName']) && isset($_SESSION['profileImage'])) {
+              // Retrieve companyName and profileImage from session
+              $companyName = $_SESSION['companyName'];
+              $profileImage = $_SESSION['profileImage'];
+
+              // Display the companyName as a link and profileImage as an image
+              echo "<li><a href='../profile/profile.php#my_profile'>$companyName</a></li>";
+              echo "<li style='top: 13px;'>
+                      <a href='../profile/profile.php#my_profile'>
+                        <img src='$profileImage' class='image-profile' alt='Profile Image'>
+                      </a>
+                    </li>";
+            } else {
+              // Fallback for anonymous users
+              echo "<li><a href='../profile/profile.php#my_profile'>Combri</a></li>";
+              echo "<li style='top: 13px;'>
+                      <a href='../profile/profile.php#my_profile'>
+                        <img src='../main_page/img/anon.jpg' class='image-profile' alt='Default Profile Image'>
+                      </a>
+                    </li>";
+            }
+          ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <div class="s003">
       <form method="GET" action="preview/preview.php">
         <div class="tags-container">
