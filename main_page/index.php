@@ -1,3 +1,4 @@
+<?php include '../conn.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,85 +76,82 @@
     </div>
 
     <div class="card-section dark-bg">
-      <!-- Category Sections -->
       <section class="companyName-cardSelector">
-        <h1>Laptops</h1>
-        <div class="card-overflow" id="Laptops">
-          <div class="card">
-            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
-            <div class="card-content">
-              <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-              <p class="description">Views: 0</p>
-              
-              <div class="stars">
-                <span class="fa fa-star bintang-rating" id="asus001-ST1"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST2"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST3"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST4"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST5"></span>
-              </div>
-            </div>
-            
-            <div class="card-footer">
-              <button class="button">
-                &rarr;
-              </button>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-image" style="background-image: url('img/Logo_huawei.png');"></div>
-            <div class="card-content">
-              <h3>HUAWEI <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-              <p class="description">Views: 0</p>
-                
-              <div class="stars">
-                <span class="fa fa-star bintang-rating" id="huawei001-ST1"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST2"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST3"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST4"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST5"></span>
-              </div>
-            </div>
+        <?php
+          // Dynamic query mengambil category tertentu
+          $query = "
+            SELECT DISTINCT 
+              SPLIT_PART(unique_id, '102', 2) AS category
+            FROM posters";
 
-            <div class="card-footer">
-              <button class="button">
-                &rarr;
-              </button>
-            </div>
+          $stmt = $pdo->prepare($query);
+          $stmt->execute();
+          $categories = $stmt->fetchAll(PDO::FETCH_COLUMN);  //ambil data ke bawah
 
-          </div>
-        </div>
-      <button onclick="addCard()"> CLICK ME!</button>
+          $allPosters = [];
+
+          foreach ($categories as $category) {
+            // membuat tabel berdasarkan kategory
+            $query = "SELECT * FROM posters WHERE unique_id LIKE :search";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([':search' => "%102{$category}%"]);
+            $posters = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // data setiap poster berdasarkan kategory
+            $allPosters[$category] = $posters;
+          }
+        ?>
+
+        <script>
+          let allPosters = <?php echo json_encode($allPosters); ?>;
+          let categories = Object.keys(allPosters); 
+
+          const companyNameClass = document.querySelector(".companyName-cardSelector");
+
+          function autoAddCard() {
+            categories.forEach(category => {
+              let sectionHtml = `
+                <h1>${category}</h1>
+                <div class="card-overflow" id="${category}">`;
+
+              if (allPosters[category]) {
+                allPosters[category].forEach((poster, j) => {
+                  sectionHtml += `
+                    <div class="card">
+                      <div class="card-image" style="background-image: url('${poster.poster_img}');"></div>
+                      <div class="card-content">
+                        <h3>${poster.company_name} 
+                          <p style="float: inline-end; font-size: small;" class="description">20</p>
+                        </h3>
+                        <p class="description">Views: 0</p>
+
+                        <div class="stars">
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST1"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST2"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST3"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST4"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST5"></span>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button class="button">
+                          &rarr;
+                        </button>
+                      </div>
+                    </div>`;
+                });
+              }
+
+              sectionHtml += `</div>`;
+              companyNameClass.innerHTML += sectionHtml; 
+            });
+
+            star_responsive();
+          }
+          autoAddCard();
+        </script>
       </section>
-
-      <section class="companyName-cardSelector">
-        <h1>Smartphones</h1>
-        <div class="card-overflow">
-          <div class="card">
-            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
-            <div class="card-content">
-                <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-                <p class="description">Views: 0</p>
-              
-                <div class="stars">
-                  <span class="fa fa-star bintang-rating" id="asus002-ST1"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST2"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST3"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST4"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST5"></span>
-                </div>
-            </div>
-        
-            <div class="card-footer">
-                <button class="button">
-                  &rarr;
-                </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
     </div>
   </div>
 
@@ -179,6 +177,5 @@
   </footer>
     
   <script src="script.js"></script>
-
 </body>
 </html>
