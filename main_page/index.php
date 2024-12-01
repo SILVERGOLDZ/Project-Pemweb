@@ -87,7 +87,7 @@
 
           $stmt = $pdo->prepare($query);
           $stmt->execute();
-          $categories = $stmt->fetch(PDO::FETCH_COLUMN);  //ambil data ke bawah
+          $categories = $stmt->fetchAll(PDO::FETCH_COLUMN);  //ambil data ke bawah
 
           $allPosters = [];
 
