@@ -76,173 +76,82 @@
     </div>
 
     <div class="card-section dark-bg">
-      <!-- Category Sections -->
       <section class="companyName-cardSelector">
+
         <?php
-          $query = "SELECT * FROM posters";
+          // Dynamic query mengambil category tertentu
+          $query = "
+            SELECT DISTINCT 
+              SPLIT_PART(unique_id, '102', 2) AS category
+            FROM posters";
+
           $stmt = $pdo->prepare($query);
           $stmt->execute();
-          $category = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          $categories = $stmt->fetchAll(PDO::FETCH_COLUMN);  //ambil data ke bawah
 
-          foreach ($category as $index => $item): 
-            $h3 = $item['company_name'];
-            $img = $item['poster_img'];
-          endforeach;
+          $allPosters = [];
 
-          // $query = "
-          //   SELECT 
-          //     SUBSTRING_INDEX(SUBSTRING_INDEX(unique_id, '102', 1), '101', -1) AS general,
-          //     SUBSTRING_INDEX(unique_id, '102', -1) AS specific
-          //   FROM posters";
-          // $stmt = $pdo->prepare($query);
-          // $stmt->execute();
-          // $category = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          
-          
-          $query = "SELECT COUNT(*) AS total FROM posters WHERE unique_id LIKE ?";
-          $stmt = $pdo->prepare($query);
-          $stmt->execute(['%laptop%']);
-          $total = $stmt->fetch(PDO::FETCH_ASSOC);
+          foreach ($categories as $category) {
+            // membuat tabel berdasarkan kategory
+            $query = "SELECT * FROM posters WHERE unique_id LIKE :search";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([':search' => "%102{$category}%"]);
+            $posters = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-          $kriteria = array("Laptop","Smartphone","Tablet", "Iphone", "TV", "Car", "Bike", "Foot Ball");
-          $len = count($kriteria);
-
+            // data setiap poster berdasarkan kategory
+            $allPosters[$category] = $posters;
+          }
         ?>
 
         <script>
-          // Temporary While
-          let kriteria = <?php echo json_encode($kriteria); ?>;
-  let posters = <?php echo json_encode($category); ?>;
-  let totalPosters = <?php echo json_encode($total['total']); ?>;
-  
-  const companyName_class = document.querySelector(".companyName-cardSelector");
+          let allPosters = <?php echo json_encode($allPosters); ?>;
+          let categories = Object.keys(allPosters); 
 
-  // Function to auto-generate the cards
-  function auto_add_card() {
-  // Loop through each category in the kriteria array
-  kriteria.forEach((category, i) => {
-    let section_html = `
-      <h1>${category}</h1>
-      <div class="card-overflow" id="${category}">`;
+          const companyNameClass = document.querySelector(".companyName-cardSelector");
 
-    let cards = "";
+          function autoAddCard() {
+            categories.forEach(category => {
+              let sectionHtml = `
+                <h1>${category}</h1>
+                <div class="card-overflow" id="${category}">`;
 
-    // Loop through all posters and generate the card HTML
-    posters.forEach((poster, j) => {
-      // Generate card for each poster
-      cards += `
-        <div class="card">
-          <div class="card-image" style="background-image: url('${poster.poster_img}');"></div>
-          <div class="card-content">
-            <h3>${poster.company_name} 
-              <p style="float: inline-end; font-size: small;" class="description">20</p>
-            </h3>
-            <p class="description">Views: 0</p>
-            
-            <div class="stars">
-              <span class="fa fa-star bintang-rating" id="${category}00${j}-ST1"></span>
-              <span class="fa fa-star bintang-rating" id="${category}00${j}-ST2"></span>
-              <span class="fa fa-star bintang-rating" id="${category}00${j}-ST3"></span>
-              <span class="fa fa-star bintang-rating" id="${category}00${j}-ST4"></span>
-              <span class="fa fa-star bintang-rating" id="${category}00${j}-ST5"></span>
-            </div>
-          </div>
+              if (allPosters[category]) {
+                allPosters[category].forEach((poster, j) => {
+                  sectionHtml += `
+                    <div class="card">
+                      <div class="card-image" style="background-image: url('${poster.poster_img}');"></div>
+                      <div class="card-content">
+                        <h3>${poster.company_name} 
+                          <p style="float: inline-end; font-size: small;" class="description">20</p>
+                        </h3>
+                        <p class="description">Views: 0</p>
 
-          <div class="card-footer">
-            <button class="button">
-              &rarr;
-            </button>
-          </div>
-        </div>`;
-    });
+                        <div class="stars">
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST1"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST2"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST3"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST4"></span>
+                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST5"></span>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button class="button">
+                          &rarr;
+                        </button>
+                      </div>
+                    </div>`;
+                });
+              }
 
-    // Close the card overflow container
-    section_html += cards + "</div>";
-    
-    // Add this section to the page
-    companyName_class.innerHTML += section_html;
-  });
-  star_responsive();
-}
+              sectionHtml += `</div>`;
+              companyNameClass.innerHTML += sectionHtml; 
+            });
 
-          auto_add_card()
-          </script>
-        <!-- <h1>Laptops</h1>
-        <div class="card-overflow" id="Laptops">
-          <div class="card">
-            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
-            <div class="card-content">
-              <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-              <p class="description">Views: 0</p>
-              
-              <div class="stars">
-                <span class="fa fa-star bintang-rating" id="asus001-ST1"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST2"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST3"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST4"></span>
-                <span class="fa fa-star bintang-rating" id="asus001-ST5"></span>
-              </div>
-            </div>
-            
-            <div class="card-footer">
-              <button class="button">
-                &rarr;
-              </button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-image" style="background-image: url('img/Logo_huawei.png');"></div>
-            <div class="card-content">
-              <h3>HUAWEI <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-              <p class="description">Views: 0</p>
-                
-              <div class="stars">
-                <span class="fa fa-star bintang-rating" id="huawei001-ST1"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST2"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST3"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST4"></span>
-                <span class="fa fa-star bintang-rating" id="huawei001-ST5"></span>
-              </div>
-            </div>
-
-            <div class="card-footer">
-              <button class="button">
-                &rarr;
-              </button>
-            </div>
-
-          </div>
-        </div> -->
+            star_responsive();
+          }
+          autoAddCard();
+        </script>
       </section>
-
-      <!-- <section class="companyName-cardSelector">
-        <h1>Smartphones</h1>
-        <div class="card-overflow">
-          <div class="card">
-            <div class="card-image" style="background-image: url('img/Logo_asus.png');"></div>
-            <div class="card-content">
-                <h3>ASUS <p style="float: inline-end; font-size: small;" class="description">20</p></h3>
-                <p class="description">Views: 0</p>
-              
-                <div class="stars">
-                  <span class="fa fa-star bintang-rating" id="asus002-ST1"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST2"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST3"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST4"></span>
-                  <span class="fa fa-star bintang-rating" id="asus002-ST5"></span>
-                </div>
-            </div>
-        
-            <div class="card-footer">
-                <button class="button">
-                  &rarr;
-                </button>
-            </div>
-          </div>
-        </div>
-      </section> -->
-
     </div>
   </div>
 
