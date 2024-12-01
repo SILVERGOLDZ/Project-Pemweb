@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides&family=Lexend:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* General body styling */
 body {
   margin: 0;
@@ -8,6 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  font-family: 'Lexend', sans-serif;
 }
 
 /* Container for the search form */
