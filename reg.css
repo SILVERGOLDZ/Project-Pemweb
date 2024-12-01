@@ -56,3 +56,18 @@ button:hover {
     text-decoration: underline;
     color: #cce0ff;
 }
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    color: #e0e0e0; /* Warna teks link lebih terang */
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #66a3ff; /* Warna link lebih terang */
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    color: #cce0ff; /* Warna link saat hover lebih terang */
+}

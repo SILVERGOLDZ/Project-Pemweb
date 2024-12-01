@@ -81,14 +81,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" href="reg.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Register</h2>
         <form action="" method="POST" enctype="multipart/form-data">
-    <label for="companyName">Company Name:</label>
+        <label for="companyName">Company Name:</label>
     <input type="text" name="companyName" id="companyName" required>
     
     <label for="email">Email:</label>
@@ -99,31 +103,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <label for="profileImage">Profile Image:</label>
     <input type="file" name="profileImage" id="profileImage" accept="image/*" required>
-    
-    <button type="submit">Upload</button>
-</form>
-<?php
-    $managers = [];
-    try {
-        $stmt = $pdo->query("SELECT * FROM log_in ORDER BY id");
-        $managers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
-        $message = "Error fetching data: " . $e->getMessage();
-    }
-?>
-<?php if(!empty($managers)) : ?>
-              <?php foreach($managers as $manager): ?>
-                      <tr>
-                          <td><?php echo htmlspecialchars($manager['id']); ?></td>
-                          <td><?php echo htmlspecialchars($manager['companyName']); ?></td>
-                          <td><?php echo htmlspecialchars($manager['password']); ?></td>
-                          <td><?php echo htmlspecialchars($manager['email']); ?></td>
-                          <td><img style="width: 100px;height: 100px;" src="<?php echo $manager['profileImage']?>" alt="gambar"></td>
-                          <td>
-                              <button class="btn btn-danger btn-sm">Delete</button>
-                          </td>
-                      </tr>
-                  <?php endforeach; ?>
-<?php endif;?>
+    <a href="log.html">
+    <button type="submit">Register</button>
+
+    <div class="register-link">
+            <p><a href="log.php">Login here</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
+
 </body>
 </html>
