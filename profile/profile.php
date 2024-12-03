@@ -1,38 +1,16 @@
 <?php
-    session_start();
-    $username = "Combri";
-    $company = "Combri";
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    
-        if (isset($_POST['username'])) {
-            $username = htmlspecialchars($_POST['username']);
-        }
-        if (isset($_POST['company'])) {
-            $company = htmlspecialchars($_POST['company']);
-        }
+session_start();
 
-        $username = htmlspecialchars($username);
-        $_SESSION['username'] = $username;
-        $_SESSION['company'] = $_POST['company'];
+// If user is not logged in, redirect to login page
+if (!isset($_SESSION['companyName']) || !isset($_SESSION['email']) || !isset($_SESSION['profileImage'])) {
+    header("Location: index.php");
+    exit();
+}
 
-    }
-
-    if (isset($_POST['upload']) && isset($_FILES['image'])) {
-        $imageTmpPath = $_FILES['image']['tmp_name'];
-        $imageName = basename($_FILES['image']['name']);
-        $uploadDir = 'uploads/'; // Define the upload directory
-        $imageUploadPath = $uploadDir . $imageName;
-    
-        // Ensure the uploads directory exists
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true); // Create the directory with proper permissions
-        }
-    
-        // Validate and move the uploaded file
-        if (move_uploaded_file($imageTmpPath, $imageUploadPath)) {
-            $_SESSION['image'] = $imageUploadPath; // Save the image path in the session
-        }
-    }
+// Retrieve session data
+$companyName = $_SESSION['companyName'];
+$email = $_SESSION['email'];
+$profileImage = $_SESSION['profileImage'];
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +18,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile Page</title>
     <link rel="stylesheet" href="../main_page/style_const.css">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="../main_page/nav.css">
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+        const supabaseUrl = 'https://kfkqpjzxvkbdnhrxlnbr.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtma3Fwanp4dmtiZG5ocnhsbmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI4MDA4ODYsImV4cCI6MjA0ODM3Njg4Nn0.rvvbHheEXnHG8pPrJ-9AH7yxYkhnojcSpQoOIzJHDM0';
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        async function handleUpdateProfile(field, value) {
+            const companyName = '<?php echo $companyName; ?>';
+            const email = '<?php echo $email; ?>';
+
+            const updates = {};
+            updates[field] = value;
+
+            try {
+                const { data, error } = await supabase
+                    .from('log_in')
+                    .update(updates)
+                    .eq('email', email); // We use the email to uniquely identify the user
+
+                if (error) {
+                    console.error('Error updating profile:', error);
+                    alert('Failed to update profile.');
+                } else {
+                    console.log('Profile updated successfully:', data);
+                    // Update session data on the client side (useful for keeping the session updated)
+                    if (field === 'companyName') {
+                        window.location.reload(); // Reload page to reflect updated company name
+                    }
+                    alert('Profile updated successfully!');
+                }
+            } catch (error) {
+                console.error('Unexpected error:', error);
+                alert('Error updating profile.');
+            }
+        }
+
+        // Trigger update when form is submitted
+        document.addEventListener('DOMContentLoaded', () => {
+            const companyNameForm = document.querySelector('#companyNameForm');
+            const emailForm = document.querySelector('#emailForm');
+
+            companyNameForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newCompanyName = e.target.elements['companyName'].value;
+                handleUpdateProfile('companyName', newCompanyName);
+            });
+
+            emailForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newEmail = e.target.elements['email'].value;
+                handleUpdateProfile('email', newEmail);
+            });
+        });
+    </script>
 </head>
 <body>
     <nav style="background-color: black;" id="navbar" class="nav">
@@ -53,19 +86,17 @@
             <div class="profile-picture"></div>
         </div>
     </nav>
+
     <div class="container dark-bg">
         <div class="sidenav">
-            <div style="display: flex;justify-content: center; align-items: center;text-align: center; flex-direction: column;width: 100%;height: auto; min-height: 150px;">
-                <img style="width: 80px; height: 80px;" src="<?php echo isset($_SESSION['image']) ? $_SESSION['image'] : '../main_page/img/anon.jpg'; ?>" class="image-profile">
-                <?php echo "<p><br>Welcome back,<br> $username!</p>"; ?>
+            <div style="display: flex; justify-content: center; align-items: center; text-align: center; flex-direction: column; width: 100%; height: auto; min-height: 150px;">
+                <img style="width: 80px; height: 80px;" src="<?php echo isset($_SESSION['profileImage']) ? $_SESSION['profileImage'] : '../main_page/img/anon.jpg'; ?>" class="image-profile">
+                <?php echo "<p><br>Welcome back,<br> $companyName!</p>"; ?>
             </div>
             <br><br><br>
             <a href="#my_profile">My Profile</a>
             <a href="#">View</a>
             <a href="#">Setting</a>
-            <a href="#">Undefined</a>
-            <a href="#">Undefined</a>
-            <a href="#">Undefined</a>
             <a href="../main_page/">Home</a>
             <a href="../user_create/user_create.php">Upload my promotion</a>
         </div>
@@ -74,49 +105,43 @@
             <Section id="my_profile">
                 <h1>My Profile <br><br></h1>
                 <br><br>
-                <form action="" method="POST" enctype="multipart/form-data">
+
+                <!-- Profile update form -->
+                <form action="profile.php" method="POST" enctype="multipart/form-data">
                     <div class="img-upload">
                         <label for="image" class="custom-file-upload">
-                            <img class="image-profile" src="<?php echo isset($_SESSION['image']) ? $_SESSION['image'] : '../main_page/img/anon.jpg'; ?>" alt="upload img" id="upload-preview" style="width: 15vw; height: 15vw; margin-left: 30px;background-color: aliceblue; cursor: pointer;">
+                            <img class="image-profile" src="<?php echo isset($_SESSION['profileImage']) ? $_SESSION['profileImage'] : '../main_page/img/anon.jpg'; ?>" alt="upload img" id="upload-preview" style="width: 15vw; height: 15vw; margin-left: 30px; background-color: aliceblue; cursor: pointer;">
                         </label>
                         <input type="file" name="image" id="image" accept="image/*" style="display: none;" required>
                         <button type="submit" name="upload">Upload</button>
                     </div>
                 </form>
                 <br><br><br>
-                <div style="display: flex; gap: 20px;" class="profile-text-container">
-                    <h2>Username : </h2>
-                    <div class="username">
 
-                        <form style="display: flex;" id="profile-change" action="profile.php" method="POST">
-                            <input style="height: 30px; display: none;" type="text" name="username" >
-                            <?php   echo "<h2>$username</h2>"; ?>
-                            <button style="margin-left: 20px; width : 70px" id="user_button" type="button" onclick="showInput('profile-change','user_submitButton', 'user_button')">Change</button>
-                            <button type="submit" id="user_submitButton" onclick="hideInput('username', 'user_submitButton', 'user_button')" style="display: none;">Done</button>
+                <!-- Company Name change -->
+                <div style="display: flex; gap: 20px;" class="profile-text-container">
+                    <h2>Company Name: </h2>
+                    <div class="username">
+                        <form id="companyNameForm" style="display: flex;">
+                            <input type="text" name="companyName" value="<?php echo $companyName; ?>" style="height: 30px;">
+                            <button type="submit" style="margin-left: 20px; width: 70px;">Update</button>
                         </form>
                     </div>
                 </div>
 
+                <!-- Email change -->
                 <div style="display: flex; gap: 20px;" class="profile-text-container">
-                    <h2>Company : </h2>
+                    <h2>Email: </h2>
                     <div class="username">
-
-                        <form style="display: flex;" id="company-change" action="profile.php" method="POST">
-                            <input style="height: 30px; display: none;" type="text" name="company" >
-                            <?php   echo "<h2>$company</h2>"; ?>
-                            <button style="margin-left: 20px; width : 70px" id="company-button" type="button" onclick="showInput('company-change', 'company_submitButton', 'company-button')">Change</button>
-                            <button type="submit" id="company_submitButton" onclick="hideInput('company', 'company_submitButton', 'company-button')" style="display: none;">Done</button>
+                        <form id="emailForm" style="display: flex;">
+                            <input type="text" name="email" value="<?php echo $email; ?>" style="height: 30px;">
+                            <button type="submit" style="margin-left: 20px; width: 70px;">Update</button>
                         </form>
                     </div>
                 </div>
-            </Section>
-
-            <Section id="test">
-        
             </Section>
         </div>
     </div>
-
 
     <script src="profile.js"></script>
 </body>
