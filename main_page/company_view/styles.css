@@ -19,16 +19,14 @@ body {
 
 
 .notice {
-  max-height: 40vh;
+  max-height: 50vh;
   height: auto; 
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   white-space: nowrap;
   scroll-snap-type: x mandatory;
-  border-style: double;
-  border-width: 5px;
-  border-color:  grey;
   box-shadow: 0 20px 20px 0 rgba(22, 198, 229, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: absolute;
 }
 
 .notice::-webkit-scrollbar{
@@ -37,7 +35,7 @@ body {
 
 .notice img{
   width: 100%;
-  max-height: 38vh;
+  max-height: 50vh;
   height: auto;
   scroll-snap-align: start;
 }
@@ -109,6 +107,7 @@ body {
   width: 100%;
   display: flex;
   overflow-x: auto;
+  flex-wrap: wrap;
 }
 
 .card-overflow::-webkit-scrollbar{

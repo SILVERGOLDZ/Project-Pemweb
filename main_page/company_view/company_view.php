@@ -1,4 +1,15 @@
-<?php include '../conn.php';?>
+<?php include '../../conn.php';
+
+  
+if (isset($_GET['poster_img_catch'], $_GET['category'])) {
+  $poster_img = filter_input(INPUT_GET, 'poster_img_catch', FILTER_SANITIZE_STRING);
+  $poster_category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
+  $_SESSION['poster_img_catch'] = $poster_img;
+  $_SESSION['category'] = $poster_category;
+} else {
+  die("Required parameters not provided.");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +22,8 @@
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="style_const.css">
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="../style_const.css">
+    <link rel="stylesheet" href="../nav.css">
 
 </head>
 
@@ -27,9 +38,9 @@
           <i class="bx bx-x"></i>
         </div>
         <ul class="links">
-          <li><a href="../profile/profile.php#my_profile">Profile</a></li>
-          <li><a href="index.php" >Home</a></li>
-          <li><a href="index-about_use.php">About us</a></li>
+          <li><a href="../../profile/profile.php#my_profile">Profile</a></li>
+          <li><a href="../index.php" >Home</a></li>
+          <li><a href="../index-about_use.php">About us</a></li>
         </ul>
       </div>
       
@@ -63,8 +74,7 @@
   
   
     <div class="notice">
-      <img class="notice_img" src="img/NOTICE_1_example.jpg"  alt="" height="40vh">
-      <img class="notice_img" src="img/NOTICE_2_example.webp" alt="" height="40vh">
+      <img class="notice_img" src="<?php echo $poster_img ?>"  alt="" height="40vh" style="background-color:white;">
       <script src="notice_script.js"></script>
     </div>
     
@@ -77,81 +87,55 @@
 
     <div class="card-section dark-bg">
       <section class="companyName-cardSelector">
+        <div class="card-overflow" id="${poster.company_name}">
 
         <?php
-          // Dynamic query mengambil category tertentu
-          $query = "
-            SELECT DISTINCT 
-              SPLIT_PART(unique_id, '102', 2) AS category
-            FROM posters";
-
+          // membuat tabel berdasarkan kategory
+          $query = "SELECT * FROM posters WHERE company_name LIKE :search";
           $stmt = $pdo->prepare($query);
-          $stmt->execute();
-          $categories = $stmt->fetchAll(PDO::FETCH_COLUMN);  //ambil data ke bawah
-
-          $allPosters = [];
-
-          foreach ($categories as $category) {
-            // membuat tabel berdasarkan kategory
-            $query = "SELECT * FROM posters WHERE unique_id LIKE :search";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([':search' => "%102{$category}%"]);
-            $posters = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            // data setiap poster berdasarkan kategory
-            $allPosters[$category] = $posters;
-          }
+          $stmt->execute([':search' => "%$poster_category%"]);
+          $posters = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
         <script>
-          let allPosters = <?php echo json_encode($allPosters); ?>;
-          let categories = Object.keys(allPosters); 
+          const posters = <?php echo json_encode($posters); ?>;
+          let categories = Object.keys(posters); 
 
-          const companyNameClass = document.querySelector(".companyName-cardSelector");
+          const companyNameClass = document.querySelector(".card-overflow");
 
           function autoAddCard() {
-            categories.forEach(category => {
+            posters.forEach((poster, index) => {
               let sectionHtml = `
-                <h1>${category}</h1>
-                <div class="card-overflow" id="${category}">`;
+                <a href="company_view.php?poster_img_catch=${encodeURIComponent(poster.poster_img)}&category=${encodeURIComponent(poster.company_name)}" class="card">`;
 
-              if (allPosters[category]) {
-                allPosters[category].forEach((poster, j) => { //poster : inisialisasi item dalam array, j : index
-                  sectionHtml += `
-                    <a href="company_view/company_view.php?poster_img_catch=${encodeURIComponent(poster.poster_img)}&category=${encodeURIComponent(poster.company_name)}" class="card">
-                      <div class="card-image" style="background-image: url('${poster.poster_img}');"></div>
-                      <form action="" method="POST"><input type="hidden" name="poster_img_catch" value="${poster.poster_img}"></form>
-                      <div class="card-content">
-                        <h3>${poster.company_name} 
-                          <p style="float: inline-end; font-size: small;" class="description">20</p>
-                        </h3>
-                        <p class="description">Views: 0</p>
+                sectionHtml += `
+                  <div class="card-image" style="background-image: url('${poster.poster_img}');"></div>
+                  <div class="card-content">
+                    <h3>${poster.company_name}</h3>
+                    <p class="description">Views: 0</p>
+                    <div class="stars">
+                      <span class="fa fa-star bintang-rating" id="${poster.company_name}00${index}-ST1"></span>
+                      <span class="fa fa-star bintang-rating" id="${poster.company_name}00${index}-ST2"></span>
+                      <span class="fa fa-star bintang-rating" id="${poster.company_name}00${index}-ST3"></span>
+                      <span class="fa fa-star bintang-rating" id="${poster.company_name}00${index}-ST4"></span>
+                      <span class="fa fa-star bintang-rating" id="${poster.company_name}00${index}-ST5"></span>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button class="button">
+                      &rarr;
+                    </button>
+                  </div>`;
 
-                        <div class="stars">
-                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST1"></span>
-                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST2"></span>
-                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST3"></span>
-                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST4"></span>
-                            <span class="fa fa-star bintang-rating" id="${category}00${j}-ST5"></span>
-                        </div>
-                      </div>
-                      <div class="card-footer">
-                        <button class="button">
-                          &rarr;
-                        </button>
-                      </div>
-                    </a>`;
-                });
-              }
-
-              sectionHtml += `</div>`;
-              companyNameClass.innerHTML += sectionHtml; 
+              sectionHtml += `</a>`;
+              companyNameClass.innerHTML += sectionHtml;
             });
 
             star_responsive();
           }
           autoAddCard();
         </script>
+        </div>
       </section>
     </div>
   </div>
@@ -177,6 +161,6 @@
     </div>
   </footer>
     
-  <script src="script.js"></script>
+  <script src="../script.js"></script>
 </body>
 </html>
