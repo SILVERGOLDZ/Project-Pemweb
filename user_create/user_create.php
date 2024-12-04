@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('DB_HOST', 'aws-0-ap-southeast-1.pooler.supabase.com');  //host
 define('DB_PORT', '6543'); //port
 define('DB_NAME', 'postgres');  //default
@@ -144,8 +145,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="user-input">
-              <label class="input-label" for="link" >Title</label>
+            <label class="input-label" for="link" >Company Name</label>
+                <br>
+                <input type="text" name="title" id="link" placeholder="<?php echo $_SESSION['companyName'] ?>" value="<?php echo $_SESSION['companyName'] ?>">
                 <br><br>
+              <label class="input-label" for="link" >Title</label>
+                <br>
                 <input type="text" name="title" id="link" placeholder="Your company name (suggested!)">
                 <br>
                 <label class="input-label" style="font-size: 20px;" for="description">Description</label>
