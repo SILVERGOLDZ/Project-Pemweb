@@ -63,27 +63,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Insert data into the database
         $stmt = $pdo->prepare('INSERT INTO poster (unique_id, "companyName", "posterImage", title, description, rating) 
-    VALUES (:unique_id, :companyName, :poster, :title, :description, :rating)');        
-    $unique_id = 'default'; // Nilai unik untuk kolom unique_id
-    $companyName = 'Combri'; // Nama perusahaan
-    $rating = '5.0'; // Rating default
+        VALUES (:unique_id, :companyName, :poster, :title, :description, :rating)');        
+        $unique_id = 'default'; // Nilai unik untuk kolom unique_id
+        $companyName = 'Combri'; // Nama perusahaan
+        $rating = '5.0'; // Rating default
+        
+        $stmt->bindParam(':unique_id', $unique_id);
+        $stmt->bindParam(':companyName', $companyName);
+        $stmt->bindParam(':poster', $imageURL);
+        $stmt->bindParam(':title', $_POST['title']);
+        $stmt->bindParam(':description', $_POST['description']);
+        $stmt->bindParam(':rating', $rating);
+        
+        try {
+          $stmt->execute();
+          echo "Data berhasil dimasukkan ke database!";
+      } catch (PDOException $e) {
+          echo "Error: " . $e->getMessage();
+      }
     
-    $stmt->bindParam(':unique_id', $unique_id);
-    $stmt->bindParam(':companyName', $companyName);
-    $stmt->bindParam(':poster', $imageURL);
-    $stmt->bindParam(':title', $_POST['title']);
-    $stmt->bindParam(':description', $_POST['description']);
-    $stmt->bindParam(':rating', $rating);
-    
-    try {
-      $stmt->execute();
-      echo "Data berhasil dimasukkan ke database!";
-  } catch (PDOException $e) {
-      echo "Error: " . $e->getMessage();
-  }
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $SUPABASE_URL);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
     
     curl_close($ch);
-
+    
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
