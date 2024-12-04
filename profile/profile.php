@@ -95,8 +95,6 @@ $profileImage = $_SESSION['profileImage'];
             </div>
             <br><br><br>
             <a href="#my_profile">My Profile</a>
-            <a href="#">View</a>
-            <a href="#">Setting</a>
             <a href="../main_page/">Home</a>
             <a href="../user_create/user_create.php">Upload my promotion</a>
         </div>
