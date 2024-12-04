@@ -1,4 +1,4 @@
-<?php include '../conn.php'?>
+<?php include '../conn.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,10 +126,11 @@
                 <div class="card-overflow" id="${category}">`;
 
               if (allPosters[category]) {
-                allPosters[category].forEach((poster, j) => {
+                allPosters[category].forEach((poster, j) => { //poster : inisialisasi item dalam array, j : index
                   sectionHtml += `
-                    <div class="card">
+                    <a href="company_view/company_view.php?poster_img_catch=${encodeURIComponent(poster.poster_img)}&category=${encodeURIComponent(poster.company_name)}" class="card">
                       <div class="card-image" style="background-image: url('${poster.poster_img}');"></div>
+                      <form action="" method="POST"><input type="hidden" name="poster_img_catch" value="${poster.poster_img}"></form>
                       <div class="card-content">
                         <h3>${poster.company_name} 
                           <p style="float: inline-end; font-size: small;" class="description">20</p>
@@ -149,7 +150,7 @@
                           &rarr;
                         </button>
                       </div>
-                    </div>`;
+                    </a>`;
                 });
               }
 
