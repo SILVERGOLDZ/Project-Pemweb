@@ -71,31 +71,11 @@
       <form method="GET" action="preview/preview.php">
         <div class="tags-container">
           <span class="tag" data-value="Technology">Technology</span>
-          <span class="tag" data-value="Health">Health</span>
+          <span class="tag" data-value="Fashion">Fashion</span>
           <span class="tag" data-value="Science">Science</span>
           <span class="tag" data-value="Travel">Travel</span>
           <span class="tag" data-value="Education">Education</span>
-          <span class="tag" data-value="Technology">Laptops</span>
-          <span class="tag" data-value="Health">Tablets</span>
-          <span class="tag" data-value="Science">Iphone</span>
-          <span class="tag" data-value="Travel">TV</span>
-          <span class="tag" data-value="Education">Car</span>          <span class="tag" data-value="Technology">Technology</span>
-          <span class="tag" data-value="Health">Bike</span>
-          <span class="tag" data-value="Science">Football</span>
-          <span class="tag" data-value="Travel">Smartphones</span>
-          <span class="tag" data-value="Education">Market</span>          <span class="tag" data-value="Technology">Technology</span>
-          <span class="tag" data-value="Health">Foods</span>
-          <span class="tag" data-value="Science">Snacks</span>
-          <span class="tag" data-value="Travel">Drinks</span>
-          <span class="tag" data-value="Education">Car</span>          <span class="tag" data-value="Technology">Technology</span>
-          <span class="tag" data-value="Health">Sweets</span>
-          <span class="tag" data-value="Science">planks</span>
-          <span class="tag" data-value="Travel">shirts</span>
-          <span class="tag" data-value="Education">wears</span>          <span class="tag" data-value="Technology">Technology</span>
-          <span class="tag" data-value="Health">Hat</span>
-          <span class="tag" data-value="Science">Knives</span>
-          <span class="tag" data-value="Travel">Sports</span>
-          <span class="tag" data-value="Education">Health</span>
+          
         </div>
         <div class="inner-form">
           <div class="input-field second-wrap">

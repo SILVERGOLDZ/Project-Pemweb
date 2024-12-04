@@ -12,9 +12,9 @@ try {
 
     // Handle search query
     $search = isset($_GET['search']) ? $_GET['search'] : '';
-    $query = "SELECT title, description, \"posterImage\", rating FROM poster";
+    $query = "SELECT title, description, \"posterImage\", rating, \"companyName\" FROM poster";
     if ($search) {
-        $query .= " WHERE title ILIKE :search";
+        $query .= " WHERE title ILIKE :search OR \"companyName\" ILIKE :search";
     }
 
     $stmt = $pdo->prepare($query);
@@ -69,12 +69,11 @@ try {
             </div>
         <?php else: ?>
             <div class="no-results">
-                <p>No cards found for your search.</p>
-                <p><a href="/main_page/index.php">Go back to search</a></p>
+                <p>Not found for your search.</p>
             </div>
         <?php endif; ?>
     </div>
-
+    <p class="results"><a href="/main_page/index-search.php">Go back to search</a></p>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="preview.js"></script>
 </body>
