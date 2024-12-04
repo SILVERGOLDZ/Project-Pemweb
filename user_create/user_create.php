@@ -38,13 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // File variables
     $filePath = $_FILES['image']['tmp_name'];
     $fileName = basename($_FILES['image']['name']);
+    $encodedFileName = rawurlencode($fileName);
 
     if (!file_exists($filePath)) {
         die("Uploaded file not found at temporary location.");
     }
     
     // Upload to Supabase Storage
-    $url = "$SUPABASE_URL/storage/v1/object/$BUCKET_NAME/$fileName";
+    $url = "$SUPABASE_URL/storage/v1/object/$BUCKET_NAME/$encodedFileName";
     $fileContent = file_get_contents($filePath);
 
     $ch = curl_init($url);
