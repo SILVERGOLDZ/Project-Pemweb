@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $rating = '5.0'; // Rating default
         
         $stmt->bindParam(':unique_id', $unique_id);
-        $stmt->bindParam(':companyName', $companyName);
+        $stmt->bindParam(':companyName', $_POST['company']);
         $stmt->bindParam(':poster', $imageURL);
         $stmt->bindParam(':title', $_POST['title']);
         $stmt->bindParam(':description', $_POST['description']);
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
           </div>
           <div class="search-box">
-            <a href="index-search.html">
+            <a href="../main_page/index-search.php">
               <i class="bx bx-search"></i>
             </a>
           </div>
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="user-input">
             <label class="input-label" for="link" >Company Name</label>
                 <br>
-                <input type="text" name="title" id="link" placeholder="<?php echo $_SESSION['companyName'] ?>" value="<?php echo $_SESSION['companyName'] ?>">
+                <input type="text" name="company" id="link" placeholder="<?php echo $_SESSION['companyName'] ?>" value="<?php echo $_SESSION['companyName'] ?>">
                 <br><br>
               <label class="input-label" for="link" >Title</label>
                 <br>

@@ -113,7 +113,6 @@ $profileImage = $_SESSION['profileImage'];
                             <img class="image-profile" src="<?php echo isset($_SESSION['profileImage']) ? $_SESSION['profileImage'] : '../main_page/img/anon.jpg'; ?>" alt="upload img" id="upload-preview" style="width: 15vw; height: 15vw; margin-left: 30px; background-color: aliceblue; cursor: pointer;">
                         </label>
                         <input type="file" name="image" id="image" accept="image/*" style="display: none;" required>
-                        <button type="submit" name="upload">Upload</button>
                     </div>
                 </form>
                 <br><br><br>
@@ -124,7 +123,6 @@ $profileImage = $_SESSION['profileImage'];
                     <div class="username">
                         <form id="companyNameForm" style="display: flex;">
                             <input type="text" name="companyName" value="<?php echo $companyName; ?>" style="height: 30px;">
-                            <button type="submit" style="margin-left: 20px; width: 70px;">Update</button>
                         </form>
                     </div>
                 </div>
@@ -135,7 +133,6 @@ $profileImage = $_SESSION['profileImage'];
                     <div class="username">
                         <form id="emailForm" style="display: flex;">
                             <input type="text" name="email" value="<?php echo $email; ?>" style="height: 30px;">
-                            <button type="submit" style="margin-left: 20px; width: 70px;">Update</button>
                         </form>
                     </div>
                 </div>

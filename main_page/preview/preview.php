@@ -73,7 +73,7 @@ try {
             </div>
         <?php endif; ?>
     </div>
-    <p class="results"><a href="/main_page/index-search.php">Go back to search</a></p>
+    <p class="results"><a href="../index-search.php">Go back to search</a></p>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="preview.js"></script>
 </body>
