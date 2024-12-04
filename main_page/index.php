@@ -80,9 +80,7 @@
     
   <div class="category">
     <div class="category-chooser">
-      <button onclick="categoryOnClick()" style="margin-left: 0px;" class="kategori dark-bg">Trending</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Top Rated</button>
-      <button onclick="categoryOnClick()" class="kategori dark-bg">Most Viewed</button>
+      <button onclick="categoryOnClick()" style="margin-left: 0px;" class="kategori dark-bg">Welcome to ComBri</button>
     </div>
 
     <div class="card-section dark-bg">
