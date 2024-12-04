@@ -121,9 +121,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <i class="bx bx-x"></i>
             </div>
             <ul class="links">
-              <li><a href="#">Profile</a></li>
-              <li><a href="../main_page/index.html" >Home</a></li>
-              <li><a href="index-about_use.html">About us</a></li>
+              <li><a href="../profile/profile.php">Profile</a></li>
+              <li><a href="../main_page/index.php" >Home</a></li>
+              <li><a href="../main_page/index-about_use.php">About us</a></li>
             </ul>
           </div>
           <div class="search-box">
