@@ -62,7 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $profileImageURL = "$SUPABASE_URL/storage/v1/object/public/$BUCKET_NAME/$fileName";
         
         // Insert data into the database
-        $stmt = $pdo->prepare('INSERT INTO log_in("companyName", email, password, "profileImage") VALUES (:companyName, :email, :password, :profileImage)');;
+        $stmt = $pdo->prepare('INSERT INTO log_in("companyName", email, password, "profileImage") 
+        VALUES (:companyName, 
+        :email,
+        :password,
+        :profileImage)');
         $stmt->bindParam(':companyName', $_POST['companyName']);
         $stmt->bindParam(':email', $_POST['email']);
         $stmt->bindParam(':password', $_POST['password']);

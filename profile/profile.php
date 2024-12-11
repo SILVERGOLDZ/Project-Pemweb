@@ -3,7 +3,15 @@ session_start();
 
 // If user is not logged in, redirect to login page
 if (!isset($_SESSION['companyName']) || !isset($_SESSION['email']) || !isset($_SESSION['profileImage'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
+    exit();
+}
+// Handle logout action
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+    // Clear all session data
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php"); // Redirect to login page
     exit();
 }
 
@@ -133,6 +141,14 @@ $profileImage = $_SESSION['profileImage'];
                             <input type="text" name="email" value="<?php echo $email; ?>" style="height: 30px;">
                         </form>
                     </div>
+                </div>
+
+                <!-- Logout button -->
+                <div style="margin-top: 20px;">
+                    <form method="POST">
+                        <button type="submit" name="logout" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Logout</button>
+                    </form>
+                </div>
                 </div>
             </Section>
         </div>

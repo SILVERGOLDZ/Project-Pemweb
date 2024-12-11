@@ -86,7 +86,7 @@
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form id="loginForm">
+        <form id="loginForm" method="POST" action="login.php">
             <label for="companyName">Company Name:</label>
             <input type="text" name="companyName" id="companyName" required>
 
@@ -98,6 +98,13 @@
 
         <div class="register-link">
             <p>Don't have an account? <a href="register.php">Register here</a></p>
+        </div>
+
+        <!-- Continue as Guest Button -->
+        <div class="guest-login">
+            <form method="POST" action="main_page/index.php">
+                <button type="submit" name="guest" style="background-color: grey; color: white; border: none; padding: 10px 20px; margin-top: 10px; cursor: pointer;">Continue as Guest</button>
+            </form>
         </div>
     </div>
 </body>
