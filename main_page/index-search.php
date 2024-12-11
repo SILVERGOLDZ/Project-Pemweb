@@ -55,7 +55,7 @@
                     </li>";
             } else {
               // Fallback for anonymous users
-              echo "<li><a href='../profile/profile.php#my_profile'>Combri</a></li>";
+              echo "<li><a href='../profile/profile.php#my_profile'>Guest</a></li>";
               echo "<li style='top: 13px;'>
                       <a href='../profile/profile.php#my_profile'>
                         <img src='../main_page/img/anon.jpg' class='image-profile' alt='Default Profile Image'>
